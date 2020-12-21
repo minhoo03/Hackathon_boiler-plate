@@ -2,6 +2,12 @@ const express = require('express')
 const app = express()
 const port = 5000
 const mongoose = require('mongoose')
+const bodyParser = require('body-parser')
+const { User } = require('./models/User')
+
+// middleware (body-parser : data 분석)
+app.use(bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.json())
 
 mongoose.connect('mongodb+srv://gcy:`kimbum1976`@boiler-plate.txkec.mongodb.net/boiler-plate?retryWrites=true&w=majority', {
     useNewUrlParser: true,
@@ -12,6 +18,19 @@ mongoose.connect('mongodb+srv://gcy:`kimbum1976`@boiler-plate.txkec.mongodb.net/
 
 app.get('/', (req, res) => {
     res.send('Hello World!')
+})
+
+// sign up Route API
+app.post('/register', (req, res) => {
+    // Client => data => insert DB     :: req.body = {id, pw, name....}
+    const user = new User(req.body)
+    // save data in model
+    user.save((err, doc) => {
+        if(err) return res.json({ success: false, err})
+        return res.status(200).json({
+            success: true
+        })
+    })
 })
 
 app.listen(port, () => {

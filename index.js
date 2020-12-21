@@ -5,11 +5,13 @@ const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const { User } = require('./models/User')
 
+const config = require('./config/key')
+
 // middleware (body-parser : data 분석)
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 
-mongoose.connect('mongodb+srv://gcy:`kimbum1976`@boiler-plate.txkec.mongodb.net/boiler-plate?retryWrites=true&w=majority', {
+mongoose.connect(config.mongoURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,

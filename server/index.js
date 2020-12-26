@@ -26,6 +26,10 @@ app.get('/', (req, res) => {
     res.send('Hello World!')
 })
 
+app.get('/api/hello', (req, res) => {
+  res.send('Hello!! Node Connected...')
+})
+
 // sign up Route API
 app.post('/api/users/register', (req, res) => {
     // Client => data => insert DB     :: req.body = {id, pw, name....}

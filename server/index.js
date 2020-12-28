@@ -75,6 +75,9 @@ app.post('/api/users/login', (req, res) => {
 app.get('/api/users/auth', auth, (req, res) => {
     // 여기까지 미들웨어를 통과해 왔다는 얘기는
     // Auth가 true라는 것
+
+    // 로그인 된 쿠키와 DB를 확인 후, 로그인된 유저 DB를 user에 담음
+    // 그럼 로그인하고 요청한 유저의 user값(DB)을 통해 데이터 사용
     res.status(200).json({
         _id: req.user._id,
         isAdmin: req.user.role === 0? false : true,

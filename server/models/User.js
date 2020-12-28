@@ -36,8 +36,8 @@ const userSchema = mongoose.Schema({
 
 // 저장하기 전 실행 => next를 보냄
 userSchema.pre("save", function (next) {
-// 생성자에 req.body 저장하므로 자기 자신을 가져옴
-var user = this
+    // 생성자에 req.body 저장하므로 자기 자신을 가져옴
+    var user = this
     // 비밀번호 변경시에만
     if(user.isModified("password")){
         // 암호화
@@ -55,16 +55,16 @@ var user = this
         next()
     }
 })
-    // 입력 pw, DB pw 비교
-    // DB pw를 복호화 할 수 없으니 pw를 암호화해서 비교
-    userSchema.methods.comparePassword = function (plainPassword, cb) {
+// 입력 pw, DB pw 비교
+// DB pw를 복호화 할 수 없으니 pw를 암호화해서 비교
+userSchema.methods.comparePassword = function (plainPassword, cb) {
 
-        //plainPassword 1234567    암호회된 비밀번호 $2b$10$l492vQ0M4s9YUBfwYkkaZOgWHExahjWC
-        bcrypt.compare(plainPassword, this.password, function (err, isMatch) {
-            if (err) return cb(err);
-            cb(null, isMatch);
-        })
-    }
+    //plainPassword 1234567    암호회된 비밀번호 $2b$10$l492vQ0M4s9YUBfwYkkaZOgWHExahjWC
+    bcrypt.compare(plainPassword, this.password, function (err, isMatch) {
+        if (err) return cb(err);
+        cb(null, isMatch);
+    })
+}
 
 // Create token use 'jsonwebtoken'
 userSchema.methods.generateToken = function (cb) {

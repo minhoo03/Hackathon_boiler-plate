@@ -15,9 +15,6 @@ function App() {
   return (
     <Router>
       <div>
-        <Button variant="contained" color="primary">
-          Hello World!
-        </Button>
         <Switch>
           <Route exact path="/" component={LandingPage} />
           <Route path="/login" component={LoginPage} />

@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import { loginUser } from '../../../_actions/user_action'
 
 function LoginPage(props) {
-    const dispath = useDispatch()
+    const dispatch = useDispatch()
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -25,7 +25,8 @@ function LoginPage(props) {
             password
         }
 
-        dispath(loginUser(body)).then(res => {
+        // component에서 Action으로 보내는 과정 DISPATCH
+        dispatch(loginUser(body)).then(res => {
             if(res.payload.loginSuccess) {
                 // App.js {component} 의 전 페이지로 이동
                 props.history.push('/')

@@ -1,4 +1,3 @@
-import axios from 'axios'
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { loginUser } from '../../../_actions/user_action'
@@ -8,6 +7,7 @@ function LoginPage(props) {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+
 
     const onEmailHandler = (event) => {
         setEmail(event.currentTarget.value)

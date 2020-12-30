@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { LOGIN_USER, REGISTER_USER } from './types'
+import { LOGIN_USER, REGISTER_USER, AUTH_USER } from './types'
 
 // req.body = dataTosubmit... 파라미터로 받음
 export function loginUser(dataTosubmit) {
@@ -27,5 +27,16 @@ export function registerUser(dataTosubmit) {
         // action 모습 ↓
         type: REGISTER_USER,
         payload: request // 서버에서 넘어온 데이터를 redux store에 받고 관리 가능 (res.payload...)
+    }
+}
+
+export function auth() {
+    // 서버에 data 날린후 받은 data => res.data
+    const request = axios.get('/api/users/auth')
+    .then(res => res.data )
+
+    return {
+        type: AUTH_USER,
+        payload: request 
     }
 }

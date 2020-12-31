@@ -30,13 +30,12 @@ export function registerUser(dataTosubmit) {
     }
 }
 
-export function auth() {
-    // 서버에 data 날린후 받은 data => res.data
-    const request = axios.get('/api/users/auth')
-    .then(res => res.data )
+export function auth(){
+    const request = axios.get(`/api/users/auth`)
+    .then(res => res.data);
 
     return {
         type: AUTH_USER,
-        payload: request 
+        payload: request
     }
 }

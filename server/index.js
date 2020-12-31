@@ -79,15 +79,15 @@ app.get('/api/users/auth', auth, (req, res) => {
     // 로그인 된 쿠키와 DB를 확인 후, 로그인된 유저 DB를 user에 담음
     // 그럼 로그인하고 요청한 유저의 user값(DB)을 통해 데이터 사용
     res.status(200).json({
-        _id: req.user._id,
-        isAdmin: req.user.role === 0? false : true,
-        isAuth: true,
-        email: req.user.email,
-        name: req.user.name,
-        lastname: req.user.lastname,
-        role: req.user.role,
-        image: req.user.image
-    })
+      _id: req.user._id,
+      isAdmin: req.user.role === 0 ? false : true,
+      isAuth: true,
+      email: req.user.email,
+      name: req.user.name,
+      lastname: req.user.lastname,
+      role: req.user.role,
+      image: req.user.image,
+  });
 })
 
 app.get('/api/users/logout', auth, (req, res) => {    

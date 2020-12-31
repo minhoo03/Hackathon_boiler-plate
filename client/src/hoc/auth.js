@@ -6,14 +6,14 @@ import { useDispatch } from 'react-redux'
 import { auth } from '../_actions/user_action'
 
 //  App.js           랜딩하는 컴포넌트   ,  null/true/false (아무나, 로그인한, 로그인안한)  ,  어드민만
-export default function(SpecificComponent, option, adminRoute = null) {
+export default function (SpecificComponent, option, adminRoute = null) {
 
     function AuthenticationCheck(props){
         // redux를 이용해 로그인 상태 저장 (action, reducer 연결)
         const dispatch = useDispatch()
 
         useEffect(() => {
-
+            
             // axios.get... action -> reducer 까지 마친 auth()
             dispatch(auth()).then(res => {
                 console.log(res.data)

@@ -15,6 +15,7 @@ function App() {
     <Router>
       {/* 1번째 인자 : 랜딩 페이지 || 2번째 인자 : 아무나, 로그인한 사람만? || 3번째 인자 : 어드민만? */}
       <div>
+        <h1>ㅁㄴㅇ</h1>
         <Switch>
           <Route exact path="/" component={Auth(LandingPage, null)} />
           <Route exact path="/login" component={Auth(LoginPage, false)} />

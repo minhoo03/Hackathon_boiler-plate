@@ -16,7 +16,23 @@ export default function (SpecificComponent, option, adminRoute = null) {
             
             // axios.get... action -> reducer 까지 마친 auth()
             dispatch(auth()).then(res => {
-                console.log(res.data)
+                console.log(res.payload)
+                
+                if(!res.payload.isAuth){
+                    // 로그인 하지 않은 상태
+                    if(option) {
+                        props.history.push('/login')
+                    }
+                } else if (res.payload.isAuth === true) {
+                    // 로그인 한 상태
+                    if(adminRoute && !res.isAdmin) { // adminRoute에 일반인이 출입할 경우
+                        props.history.push('/')
+                    } else {
+                        if(option === false) { // 로그인한 유저가 로그인 페이지를 가려하면 막음
+                            props.history.push('/')
+                        }
+                    }
+                }
             })
         }, [])
 
